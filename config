@@ -17,10 +17,8 @@ set $mod Mod1
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+font pango:DejaVu Sans Mono 10
 
-# set some nice colors      border    background  text
-client.focused              #ff7800   #ff7800     #ffffff
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -191,8 +189,27 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+
+# set some nice colors      border    background  text
+set $orange #ff8800
+set $gray #222222
+client.focused              $gray   $gray     $orange
+
 bar {
-        status_command i3status
+    status_command i3status
+    position bottom
+    colors {
+        background #000000
+        statusline #ffffff
+        separator  #666666
+
+        # # Colors for each workspace status
+        focused_workspace  $gray $gray $orange
+        # active_workspace    #333333 #5f676a #ffffff
+        # inactive_workspace  #333333 #222222 #888888
+        # urgent_workspace    #000000 #000000 #ffffff
+        # binding_mode        #000000 #000000 #ffffff
+    }
 }
 
 bindsym $mod+shift+x exec gdmflexiserver
